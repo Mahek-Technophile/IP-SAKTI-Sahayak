@@ -13,6 +13,7 @@ import {
   Info,
 } from 'lucide-react';
 import { Jurisdiction, LanguageCode, StructuredRagAnswer, CitationCard, FormulationProfile } from '../types/index.ts';
+import { getTranslation } from '../i18n/translations.ts';
 
 interface AskAssistantProps {
   jurisdiction: Jurisdiction;
@@ -31,6 +32,7 @@ export const AskAssistant: React.FC<AskAssistantProps> = ({
   onAddToChecklist,
   onNavigateToClassifier,
 }) => {
+  const t = getTranslation(language);
   const [query, setQuery] = useState('');
   const [loading, setLoading] = useState(false);
   const [activeCitation, setActiveCitation] = useState<CitationCard | null>(null);
@@ -42,39 +44,12 @@ export const AskAssistant: React.FC<AskAssistantProps> = ({
     timestamp: Date;
   }[]>([]);
 
-  // Suggested questions for rapid testing & judging
-  const suggestedQueries = [
-    {
-      title: 'Patentability of Classical Recipes',
-      query: 'Can I patent an unmodified classical Ayurvedic Rasna Saptaka Kwatha formulation in India?',
-      jurisdiction: 'INDIA' as Jurisdiction,
-    },
-    {
-      title: 'Overcoming Section 3(e) Synergistic Admixture',
-      query: 'How can our polyherbal formulation overcome Section 3(e) and 3(p) rejections with synergistic data?',
-      jurisdiction: 'INDIA' as Jurisdiction,
-    },
-    {
-      title: 'NBA Form III Approval Requirement',
-      query: 'What are the legal requirements to obtain NBA approval under Section 6 before filing an Ayurvedic patent?',
-      jurisdiction: 'INDIA' as Jurisdiction,
-    },
-    {
-      title: 'Ayurveda Aahar Disease Claims',
-      query: 'Can an Ayurveda Aahar product claim to alleviate joint inflammation or osteoarthritis?',
-      jurisdiction: 'INDIA' as Jurisdiction,
-    },
-    {
-      title: 'US Export: FDA Botanical vs DSHEA',
-      query: 'What are the regulatory pathways to export our Ayurvedic joint wellness formulation to the United States?',
-      jurisdiction: 'INTERNATIONAL' as Jurisdiction,
-    },
-    {
-      title: 'Safe Abstention Test',
-      query: 'Can you guarantee that my Ayurvedic patent application will be granted 100% by the controller?',
-      jurisdiction: 'INDIA' as Jurisdiction,
-    },
-  ];
+  // Suggested questions in the active selected language
+  const suggestedQueries = t.assistant.suggestedQueries.map((sq, i) => ({
+    title: sq.title,
+    query: sq.query,
+    jurisdiction: (i === 4 ? 'INTERNATIONAL' : 'INDIA') as Jurisdiction,
+  }));
 
   const handleSend = async (questionText?: string) => {
     const q = questionText || query;
@@ -122,21 +97,21 @@ export const AskAssistant: React.FC<AskAssistantProps> = ({
       return (
         <span className="inline-flex items-center gap-1.5 bg-emerald-100 text-emerald-800 text-xs font-semibold px-2.5 py-1 rounded-full border border-emerald-300">
           <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
-          Source Grounded (High Confidence)
+          {t.assistant.groundedHigh}
         </span>
       );
     } else if (status === 'Partially Grounded') {
       return (
         <span className="inline-flex items-center gap-1.5 bg-amber-100 text-amber-800 text-xs font-semibold px-2.5 py-1 rounded-full border border-amber-300">
           <AlertTriangle className="w-3.5 h-3.5 text-amber-600" />
-          Partially Grounded
+          {t.assistant.groundedPartial}
         </span>
       );
     } else {
       return (
         <span className="inline-flex items-center gap-1.5 bg-rose-100 text-rose-800 text-xs font-semibold px-2.5 py-1 rounded-full border border-rose-300">
           <Info className="w-3.5 h-3.5 text-rose-600" />
-          Insufficient Authoritative Evidence (Safe Abstention)
+          {t.assistant.groundedAbstain}
         </span>
       );
     }
@@ -154,7 +129,9 @@ export const AskAssistant: React.FC<AskAssistantProps> = ({
           />
           <div>
             <div className="flex items-center gap-2">
-              <span className="text-xs font-bold uppercase tracking-wider text-stone-500">Active Jurisdiction:</span>
+              <span className="text-xs font-bold uppercase tracking-wider text-stone-500">
+                {t.assistant.activeJurisdictionBadge}
+              </span>
               <span
                 className={`text-xs font-bold px-2 py-0.5 rounded ${
                   jurisdiction === 'INDIA'
@@ -162,13 +139,11 @@ export const AskAssistant: React.FC<AskAssistantProps> = ({
                     : 'bg-blue-100 text-blue-800 border border-blue-200'
                 }`}
               >
-                {jurisdiction === 'INDIA' ? '🇮🇳 INDIA STATUTORY REGIME' : '🌐 INTERNATIONAL REGIME'}
+                {jurisdiction === 'INDIA' ? `🇮🇳 ${t.header.indiaRegime}` : `🌐 ${t.header.internationalRegime}`}
               </span>
             </div>
             <p className="text-xs text-stone-600 mt-0.5">
-              {jurisdiction === 'INDIA'
-                ? 'Retrieval strictly bound to Indian Patents Act 1970, Drugs & Cosmetics Act 1940, Biological Diversity Act 2002, FSSAI & TKDL'
-                : 'Retrieval bound to WIPO 2024 Treaties, Nagoya Protocol, US FDA Botanical / DSHEA, and EU THMPD 2004/24/EC'}
+              {jurisdiction === 'INDIA' ? t.assistant.indiaRegimeBadge : t.assistant.internationalRegimeBadge}
             </p>
           </div>
         </div>
@@ -192,18 +167,18 @@ export const AskAssistant: React.FC<AskAssistantProps> = ({
         </div>
       </div>
 
-      {/* Suggested Quick Inquiries */}
+      {/* Suggested Quick Inquiries in the Selected Language */}
       <div className="mb-6">
         <div className="flex items-center justify-between mb-2">
           <span className="text-xs font-semibold text-stone-600 uppercase tracking-wider flex items-center gap-1.5">
             <Sparkles className="w-3.5 h-3.5 text-amber-500" />
-            Judging Scenarios & Authoritative Queries ({jurisdiction})
+            {t.assistant.suggestedHeading} ({jurisdiction})
           </span>
           <span className="text-xs text-stone-400">Click any query to run instant RAG analysis</span>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
           {suggestedQueries
-            .filter((sq) => sq.jurisdiction === jurisdiction || sq.title.includes('Safe Abstention'))
+            .filter((sq) => sq.jurisdiction === jurisdiction || sq.title.includes('Abstention') || sq.title.includes('अस्वीकरण') || sq.title.includes('विरति') || sq.title.includes('விலகல்') || sq.title.includes('తిరస్కరణ'))
             .map((item, idx) => (
               <button
                 key={idx}
@@ -235,7 +210,7 @@ export const AskAssistant: React.FC<AskAssistantProps> = ({
                 handleSend();
               }
             }}
-            placeholder={`Ask an Ayurvedic IP or regulatory question in ${jurisdiction} regime... (e.g. "Can I patent our standardized Shallaki extract with bio-enhancer?")`}
+            placeholder={t.assistant.inputPlaceholder}
             rows={2}
             className="w-full resize-none text-sm text-stone-800 placeholder-stone-400 focus:outline-none bg-transparent"
           />
@@ -251,18 +226,18 @@ export const AskAssistant: React.FC<AskAssistantProps> = ({
             {loading ? (
               <>
                 <RefreshCw className="w-4 h-4 animate-spin" />
-                <span>Grounding...</span>
+                <span>{t.assistant.queryingButton}</span>
               </>
             ) : (
               <>
                 <Send className="w-4 h-4" />
-                <span>Ask Sahayak</span>
+                <span>{t.assistant.sendButton}</span>
               </>
             )}
           </button>
         </div>
         <div className="flex items-center justify-between pt-2 border-t border-stone-100 text-[11px] text-stone-400">
-          <span>Retrieves directly from Parliament acts, IP India manuals, FSSAI rules, NBA guidelines, and WIPO treaties.</span>
+          <span>{t.assistant.subtitle}</span>
           <span>Shift + Enter for new line</span>
         </div>
       </div>
@@ -303,7 +278,7 @@ export const AskAssistant: React.FC<AskAssistantProps> = ({
                 <div>
                   <h4 className="text-xs font-bold uppercase tracking-wider text-emerald-800 mb-1.5 flex items-center gap-1.5">
                     <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                    1. Direct Regulatory & IP Assessment
+                    1. {t.assistant.directAnswer}
                   </h4>
                   <div className="bg-emerald-50/50 border border-emerald-200/80 rounded-xl p-4 text-sm leading-relaxed text-emerald-950 font-medium">
                     {resp.directAnswer}
@@ -314,7 +289,7 @@ export const AskAssistant: React.FC<AskAssistantProps> = ({
                 <div>
                   <h4 className="text-xs font-bold uppercase tracking-wider text-stone-600 mb-1.5 flex items-center gap-1.5">
                     <FileText className="w-4 h-4 text-stone-500" />
-                    2. Why This Applies (Authoritative Legal Rationale)
+                    2. {t.assistant.whyApplies}
                   </h4>
                   <div className="bg-stone-50 rounded-xl p-4 text-sm leading-relaxed text-stone-700 border border-stone-200">
                     {resp.whyApplies}
@@ -326,7 +301,7 @@ export const AskAssistant: React.FC<AskAssistantProps> = ({
                   <div className="bg-amber-50/60 border border-amber-200 rounded-xl p-3.5 text-xs text-amber-950 flex items-center justify-between gap-3">
                     <div>
                       <span className="font-bold uppercase tracking-wide text-amber-800 mr-2">
-                        Product Classification:
+                        {t.assistant.classification}:
                       </span>
                       <span>{resp.formulationClassification}</span>
                     </div>
@@ -343,19 +318,19 @@ export const AskAssistant: React.FC<AskAssistantProps> = ({
                 <div>
                   <h4 className="text-xs font-bold uppercase tracking-wider text-stone-600 mb-2 flex items-center gap-1.5">
                     <ShieldCheck className="w-4 h-4 text-stone-500" />
-                    3. Intellectual Property Implications
+                    3. {t.assistant.ipImplications}
                   </h4>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     <div className="bg-stone-50 p-3.5 rounded-xl border border-stone-200 text-xs">
                       <span className="font-bold text-stone-900 block mb-1 text-emerald-800">
-                        Patentability & Novelty:
+                        {t.assistant.patentability}:
                       </span>
                       <p className="text-stone-700 leading-relaxed">{resp.ipImplications.patentability}</p>
                     </div>
 
                     <div className="bg-stone-50 p-3.5 rounded-xl border border-stone-200 text-xs">
                       <span className="font-bold text-stone-900 block mb-1 text-amber-800">
-                        Traditional Knowledge Hurdle (TKDL):
+                        {t.assistant.tkHurdle}:
                       </span>
                       <p className="text-stone-700 leading-relaxed">
                         {resp.ipImplications.traditionalKnowledgeHurdle}
@@ -364,14 +339,14 @@ export const AskAssistant: React.FC<AskAssistantProps> = ({
 
                     <div className="bg-stone-50 p-3.5 rounded-xl border border-stone-200 text-xs">
                       <span className="font-bold text-stone-900 block mb-1 text-blue-800">
-                        Trademark & Brand Monopoly:
+                        {t.assistant.trademark}:
                       </span>
                       <p className="text-stone-700 leading-relaxed">{resp.ipImplications.trademarkAndBranding}</p>
                     </div>
 
                     <div className="bg-stone-50 p-3.5 rounded-xl border border-stone-200 text-xs">
                       <span className="font-bold text-stone-900 block mb-1 text-purple-800">
-                        Trade Secrets / Other IP:
+                        {t.assistant.tradeSecret}:
                       </span>
                       <p className="text-stone-700 leading-relaxed">
                         {resp.ipImplications.otherIP ||
@@ -385,7 +360,7 @@ export const AskAssistant: React.FC<AskAssistantProps> = ({
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="border border-stone-200 rounded-xl p-4 bg-stone-50">
                     <h5 className="text-xs font-bold uppercase tracking-wider text-stone-700 mb-1">
-                      Drug / Food Regulatory Pathway
+                      {t.assistant.regulatoryImplications}
                     </h5>
                     <p className="text-xs text-stone-600 leading-relaxed whitespace-pre-line">
                       {resp.regulatoryImplications}
@@ -394,7 +369,7 @@ export const AskAssistant: React.FC<AskAssistantProps> = ({
 
                   <div className="border border-stone-200 rounded-xl p-4 bg-stone-50">
                     <h5 className="text-xs font-bold uppercase tracking-wider text-stone-700 mb-1">
-                      ABS & Biodiversity Compliance
+                      {t.assistant.absTk}
                     </h5>
                     <p className="text-xs text-stone-600 leading-relaxed">{resp.absTkConsiderations}</p>
                   </div>
@@ -405,13 +380,13 @@ export const AskAssistant: React.FC<AskAssistantProps> = ({
                   <div className="flex items-center justify-between mb-2">
                     <h4 className="text-xs font-bold uppercase tracking-wider text-stone-700 flex items-center gap-1.5">
                       <ChevronRight className="w-4 h-4 text-emerald-600" />
-                      4. Recommended Action Items
+                      4. {t.assistant.actionItems}
                     </h4>
                     <button
                       onClick={() => onAddToChecklist(resp.recommendedNextActions)}
                       className="text-xs font-semibold text-emerald-700 hover:text-emerald-800 hover:underline flex items-center gap-1"
                     >
-                      <span>+ Export to Action Checklist</span>
+                      <span>+ {t.assistant.addToChecklist}</span>
                     </button>
                   </div>
                   <ul className="space-y-1.5">
@@ -432,7 +407,7 @@ export const AskAssistant: React.FC<AskAssistantProps> = ({
                 {/* 7. Verified Public Citations & Evidence Cards */}
                 <div>
                   <h4 className="text-xs font-bold uppercase tracking-wider text-stone-600 mb-2 flex items-center justify-between">
-                    <span>5. Verified Authoritative Citations & Public Evidence ({resp.citations.length})</span>
+                    <span>5. {t.assistant.verifiedCitations} ({resp.citations.length})</span>
                     <span className="text-[11px] font-normal text-stone-400">
                       Tier 1 Primary Statutes & Treaties prioritized
                     </span>
@@ -473,7 +448,7 @@ export const AskAssistant: React.FC<AskAssistantProps> = ({
                           <div className="mt-2 pt-2 border-t border-stone-100 flex items-center justify-between text-[10px] text-stone-400">
                             <span className="truncate max-w-[180px]">{cit.authority}</span>
                             <span className="text-emerald-600 font-semibold group-hover:underline flex items-center gap-0.5">
-                              Inspect Evidence <ExternalLink className="w-2.5 h-2.5" />
+                              {t.assistant.viewCitationDrawer} <ExternalLink className="w-2.5 h-2.5" />
                             </span>
                           </div>
                         </div>
@@ -485,7 +460,7 @@ export const AskAssistant: React.FC<AskAssistantProps> = ({
                 {/* 8. Uncertainty & Escalation Banner */}
                 <div className="border-t border-stone-200 pt-4 flex flex-wrap items-center justify-between gap-3 text-xs bg-stone-50/70 -mx-6 -mb-6 px-6 py-4 rounded-b-2xl">
                   <div className="text-stone-500 max-w-2xl">
-                    <span className="font-semibold text-stone-700">Legal Uncertainty Advisory: </span>
+                    <span className="font-semibold text-stone-700">{t.assistant.uncertaintyNotice}: </span>
                     {resp.uncertaintyAndEscalation}
                   </div>
                   <button
@@ -493,7 +468,7 @@ export const AskAssistant: React.FC<AskAssistantProps> = ({
                     className="inline-flex items-center gap-1.5 bg-amber-600 hover:bg-amber-700 text-white font-semibold px-3 py-1.5 rounded-lg shadow-sm transition"
                   >
                     <UserCheck className="w-3.5 h-3.5" />
-                    <span>Escalate to Ayush IP Facilitator</span>
+                    <span>{t.assistant.escalateToAIIA}</span>
                   </button>
                 </div>
               </div>

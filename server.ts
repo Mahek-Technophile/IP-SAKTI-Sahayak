@@ -94,28 +94,41 @@ app.post('/api/rag', async (req, res) => {
           )
           .join('\n---\n');
 
-        const systemInstruction = `You are IP-SAKTI Sahayak, an AI assistant for Intellectual Property and regulatory guidance in Ayurveda under Ministry of Ayush / AIIA Problem Statement 26045.
-Jurisdiction: ${jurisdiction}. (NEVER silently mix India and International laws).
-Language: ${language}.
+        const languageNames: Record<LanguageCode, string> = {
+          en: 'English',
+          hi: 'Hindi (हिन्दी)',
+          sa: 'Sanskrit (संस्कृतम्)',
+          ta: 'Tamil (தமிழ்)',
+          te: 'Telugu (తెలుగు)',
+        };
+        const langName = languageNames[language] || 'English';
+
+        const systemInstruction = `You are IP-SAKTI Sahayak, an authoritative multilingual AI assistant for Intellectual Property, regulatory guidance, and Traditional Knowledge in Ayurveda under Ministry of Ayush / AIIA Problem Statement 26045.
+Jurisdiction: ${jurisdiction}. (NEVER silently mix Indian and International legal frameworks).
+Target Language: ${langName} (${language}).
+
+CRITICAL MULTILINGUAL MANDATE:
+All content in the generated JSON response (including "directAnswer", "whyApplies", "formulationClassification", all fields inside "ipImplications", "regulatoryImplications", "absTkConsiderations", "recommendedNextActions", and "uncertaintyAndEscalation") MUST be written fluently in ${langName} (using its proper script: Devanagari for Hindi/Sanskrit, Tamil script for Tamil, Telugu script for Telugu, Latin for English).
+
 GROUNDING MANDATE:
 1. Every legal or regulatory claim MUST cite the provided sources by ID or section name.
 2. Do not fabricate sections, rules, or treaties.
 3. If the retrieved evidence does not support an answer, abstain safely.
 4. Output valid JSON adhering to the exact schema:
 {
-  "directAnswer": "concise answer in ${language}",
-  "whyApplies": "legal and factual reasoning based on retrieved documents",
-  "formulationClassification": "inferred category or summary",
+  "directAnswer": "concise answer in ${langName}",
+  "whyApplies": "legal and factual reasoning based on retrieved documents in ${langName}",
+  "formulationClassification": "inferred category in ${langName}",
   "ipImplications": {
-    "patentability": "patent hurdles (Sec 3(p), 3(e), novelty, synergy)",
-    "traditionalKnowledgeHurdle": "TKDL and prior art implications",
-    "trademarkAndBranding": "trademark class and branding guidance",
-    "otherIP": "trade secrets, copyright, designs or plant variety if relevant"
+    "patentability": "patent hurdles (Sec 3(p), 3(e), novelty, synergy) in ${langName}",
+    "traditionalKnowledgeHurdle": "TKDL and prior art implications in ${langName}",
+    "trademarkAndBranding": "trademark class and branding guidance in ${langName}",
+    "otherIP": "trade secrets, copyright, or plant variety in ${langName}"
   },
-  "regulatoryImplications": "licensing and compliance pathways",
-  "absTkConsiderations": "NBA/SBB approvals and benefit sharing guidelines",
-  "recommendedNextActions": ["action item 1", "action item 2", "action item 3"],
-  "uncertaintyAndEscalation": "boundaries of advice and recommendation to consult AIIA IP Cell"
+  "regulatoryImplications": "licensing and compliance pathways in ${langName}",
+  "absTkConsiderations": "NBA/SBB approvals and benefit sharing guidelines in ${langName}",
+  "recommendedNextActions": ["action item 1 in ${langName}", "action item 2 in ${langName}", "action item 3 in ${langName}"],
+  "uncertaintyAndEscalation": "boundaries of advice and recommendation to consult AIIA IP Cell in ${langName}"
 }`;
 
         const prompt = `User Query: "${query}"

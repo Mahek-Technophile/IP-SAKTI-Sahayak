@@ -1,6 +1,7 @@
 import React from 'react';
 import { Shield, Globe, BookOpen, Sparkles, CheckCircle2, AlertCircle } from 'lucide-react';
 import { Jurisdiction, LanguageCode } from '../types/index.ts';
+import { getTranslation } from '../i18n/translations.ts';
 
 interface HeaderProps {
   jurisdiction: Jurisdiction;
@@ -21,8 +22,10 @@ export const Header: React.FC<HeaderProps> = ({
   activeTab,
   onTabChange,
 }) => {
+  const t = getTranslation(language);
+
   const languages: { code: LanguageCode; label: string; native: string }[] = [
-    { code: 'en', label: 'English', native: 'EN' },
+    { code: 'en', label: 'English', native: 'English' },
     { code: 'hi', label: 'Hindi', native: 'हिन्दी' },
     { code: 'sa', label: 'Sanskrit', native: 'संस्कृतम्' },
     { code: 'ta', label: 'Tamil', native: 'தமிழ்' },
@@ -30,13 +33,13 @@ export const Header: React.FC<HeaderProps> = ({
   ];
 
   const navTabs = [
-    { id: 'assistant', label: 'Ask Assistant', icon: Sparkles },
-    { id: 'classifier', label: 'Formulation Classifier', icon: Shield },
-    { id: 'ip-navigator', label: 'IP Navigator', icon: BookOpen },
-    { id: 'abs-tk', label: 'ABS & Traditional Knowledge', icon: CheckCircle2 },
-    { id: 'corpus', label: 'Source Explorer', icon: Globe },
-    { id: 'checklist', label: 'Action Checklist', icon: CheckCircle2 },
-    { id: 'evaluation', label: 'SIH Evaluation', icon: AlertCircle },
+    { id: 'assistant', label: t.tabs.assistant, icon: Sparkles },
+    { id: 'classifier', label: t.tabs.classifier, icon: Shield },
+    { id: 'ip-navigator', label: t.tabs.ipNavigator, icon: BookOpen },
+    { id: 'abs-tk', label: t.tabs.absTk, icon: CheckCircle2 },
+    { id: 'corpus', label: t.tabs.corpus, icon: Globe },
+    { id: 'checklist', label: t.tabs.checklist, icon: CheckCircle2 },
+    { id: 'evaluation', label: t.tabs.evaluation, icon: AlertCircle },
   ];
 
   return (
@@ -46,23 +49,23 @@ export const Header: React.FC<HeaderProps> = ({
         <div className="flex items-center gap-2">
           <span className="inline-flex items-center gap-1 font-semibold text-emerald-200">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            Smart India Hackathon 2026
+            {t.header.sihTitle}
           </span>
           <span className="text-emerald-500">•</span>
-          <span>Ministry of Ayush / All India Institute of Ayurveda (AIIA)</span>
+          <span>{t.header.ministryAyush}</span>
           <span className="text-emerald-500">•</span>
           <span className="font-mono bg-emerald-900/60 px-1.5 py-0.5 rounded text-emerald-200 border border-emerald-800/60">
-            Problem Statement 26045
+            {t.header.problemStatement}
           </span>
         </div>
         <div className="flex items-center gap-3 text-stone-400">
-          <span className="hidden sm:inline">Authoritative Source-Grounded RAG</span>
+          <span className="hidden sm:inline">{t.header.ragBadge}</span>
           <button
             onClick={onLoadHerbNova}
             className="inline-flex items-center gap-1 bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 px-2.5 py-0.5 rounded text-xs font-medium transition"
           >
             <Sparkles className="w-3.5 h-3.5" />
-            Load &ldquo;HerbNova&rdquo; Demo
+            {t.header.loadDemoBtn}
           </button>
         </div>
       </div>
@@ -77,14 +80,14 @@ export const Header: React.FC<HeaderProps> = ({
           <div>
             <div className="flex items-center gap-2">
               <h1 className="text-lg font-bold tracking-tight text-stone-50 font-serif">
-                IP-SAKTI Sahayak
+                {t.header.appTitle}
               </h1>
               <span className="text-[10px] uppercase font-semibold bg-emerald-900/80 text-emerald-300 border border-emerald-700/60 px-1.5 py-0.5 rounded">
-                Prototype v1.0
+                {t.header.prototypeBadge}
               </span>
             </div>
             <p className="text-xs text-stone-400">
-              From Ayurvedic Innovation to Evidence-Backed IP & Regulatory Guidance
+              {t.header.appSubtitle}
             </p>
           </div>
         </div>
@@ -100,10 +103,10 @@ export const Header: React.FC<HeaderProps> = ({
                   ? 'bg-emerald-700 text-white shadow-sm'
                   : 'text-stone-400 hover:text-stone-200'
               }`}
-              title="Prioritize Indian Statutes, Drugs & Cosmetics Act, Patents Act Sec 3(p), Biological Diversity Act"
+              title={t.header.indiaTooltip}
             >
               <span>🇮🇳</span>
-              <span>INDIA REGIME</span>
+              <span>{t.header.indiaRegime}</span>
             </button>
             <button
               onClick={() => onJurisdictionChange('INTERNATIONAL')}
@@ -112,21 +115,21 @@ export const Header: React.FC<HeaderProps> = ({
                   ? 'bg-blue-700 text-white shadow-sm'
                   : 'text-stone-400 hover:text-stone-200'
               }`}
-              title="Prioritize Treaties (WIPO 2024, Nagoya), US FDA Botanical/DSHEA, EU THMPD 2004/24/EC"
+              title={t.header.internationalTooltip}
             >
               <span>🌐</span>
-              <span>INTERNATIONAL</span>
+              <span>{t.header.internationalRegime}</span>
             </button>
           </div>
 
           {/* Language Selector */}
-          <div className="flex items-center bg-stone-950 border border-stone-700/80 rounded-lg px-2 py-1">
-            <span className="text-xs text-stone-400 mr-2 hidden sm:inline">Lang:</span>
+          <div className="flex items-center bg-stone-950 border border-emerald-500/50 rounded-lg px-2 py-1 shadow-xs">
+            <span className="text-xs text-emerald-400 font-semibold mr-1.5">🌐 {t.header.langLabel}</span>
             <select
               value={language}
               onChange={(e) => onLanguageChange(e.target.value as LanguageCode)}
               aria-label="Select Assistant Language"
-              className="bg-transparent text-xs text-stone-200 font-medium focus:outline-none cursor-pointer"
+              className="bg-transparent text-xs text-white font-semibold focus:outline-none cursor-pointer py-0.5"
             >
               {languages.map((l) => (
                 <option key={l.code} value={l.code} className="bg-stone-900 text-stone-100">

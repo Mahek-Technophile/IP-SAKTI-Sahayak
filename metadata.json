@@ -1,0 +1,6 @@
+{
+  "name": "IP-SAKTI Sahayak",
+  "description": "Multilingual RAG-based AI assistant for Intellectual Property, Ayurveda formulation classification, regulatory guidance, and Access-and-Benefit-Sharing (ABS) under Ministry of Ayush / AIIA problem statement 26045.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

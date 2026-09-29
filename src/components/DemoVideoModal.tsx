@@ -197,7 +197,7 @@ const SCENES: Scene[] = [
 ];
 
 export const DemoVideoModal: React.FC<DemoVideoModalProps> = ({ isOpen, onClose, onJumpToTab }) => {
-  const [activeTab, setActiveTab] = useState<'video' | 'script'>('video');
+  const [activeTab, setActiveTab] = useState<'mp4' | 'video' | 'script'>('mp4');
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [currentTime, setCurrentTime] = useState<number>(0);
   const [playbackRate, setPlaybackRate] = useState<number>(1);
@@ -448,23 +448,50 @@ ${s.keyPoints.map((p) => `  * ${p}`).join('\n')}
           </div>
 
           <div className="flex items-center gap-2">
+            <a
+              href="/demo-sih-2026.mp4"
+              download="IP-SAKTI-Sahayak-SIH2026-Demo.mp4"
+              className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 bg-emerald-700 hover:bg-emerald-800 text-white rounded-lg text-xs font-semibold shadow-xs transition"
+              title="Download complete 1080p MP4 presentation video"
+            >
+              <Download className="w-3.5 h-3.5" />
+              <span>Download .MP4</span>
+            </a>
+
             <div className="flex bg-stone-100 p-0.5 rounded-lg border border-stone-200 text-xs">
+              <button
+                onClick={() => {
+                  stopSpeech();
+                  setIsPlaying(false);
+                  setActiveTab('mp4');
+                }}
+                className={`px-3 py-1 rounded-md font-medium transition flex items-center gap-1.5 ${
+                  activeTab === 'mp4' ? 'bg-white text-emerald-800 shadow-2xs font-semibold' : 'text-stone-600 hover:text-stone-900'
+                }`}
+              >
+                <Video className="w-3.5 h-3.5 text-emerald-600" />
+                <span>On-Screen MP4 Video</span>
+              </button>
               <button
                 onClick={() => setActiveTab('video')}
                 className={`px-3 py-1 rounded-md font-medium transition ${
                   activeTab === 'video' ? 'bg-white text-emerald-800 shadow-2xs font-semibold' : 'text-stone-600 hover:text-stone-900'
                 }`}
               >
-                Interactive Player
+                Interactive Storyboard
               </button>
               <button
-                onClick={() => setActiveTab('script')}
+                onClick={() => {
+                  stopSpeech();
+                  setIsPlaying(false);
+                  setActiveTab('script');
+                }}
                 className={`px-3 py-1 rounded-md font-medium transition flex items-center gap-1 ${
                   activeTab === 'script' ? 'bg-white text-emerald-800 shadow-2xs font-semibold' : 'text-stone-600 hover:text-stone-900'
                 }`}
               >
                 <FileText className="w-3.5 h-3.5" />
-                Script & Storyboard
+                Script & Pitch
               </button>
             </div>
 
@@ -482,7 +509,107 @@ ${s.keyPoints.map((p) => `  * ${p}`).join('\n')}
         </div>
 
         {/* Content Tabs */}
-        {activeTab === 'video' ? (
+        {activeTab === 'mp4' && (
+          <div className="flex-1 flex flex-col min-h-0 bg-stone-100 p-4 sm:p-6 overflow-y-auto">
+            {/* 16:9 Video Player Card */}
+            <div className="w-full max-w-5xl mx-auto bg-stone-950 rounded-2xl overflow-hidden shadow-xl border border-stone-800 flex flex-col">
+              <div className="relative aspect-video w-full bg-black flex items-center justify-center">
+                <video
+                  controls
+                  autoPlay
+                  playsInline
+                  className="w-full h-full object-contain"
+                  src="/demo-sih-2026.mp4"
+                >
+                  Your browser does not support HTML5 MP4 video.
+                </video>
+              </div>
+
+              {/* Player Bottom Control & Info Bar */}
+              <div className="p-3.5 sm:p-4 bg-stone-900 border-t border-stone-800 flex flex-wrap items-center justify-between gap-3 text-stone-200">
+                <div className="flex items-center gap-2 sm:gap-3">
+                  <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
+                  <span className="font-serif font-bold text-xs sm:text-sm text-stone-100">
+                    IP-SAKTI Sahayak • Official SIH 2026 Pitch Video
+                  </span>
+                  <span className="text-[10px] bg-stone-800 text-stone-300 border border-stone-700 px-2 py-0.5 rounded font-mono">
+                    1080p FHD
+                  </span>
+                  <span className="text-[10px] bg-emerald-950 text-emerald-300 border border-emerald-800 px-2 py-0.5 rounded font-mono">
+                    1:46 Runtime
+                  </span>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <a
+                    href="/demo-sih-2026.mp4"
+                    download="IP-SAKTI-Sahayak-SIH2026-Demo.mp4"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-xs font-semibold shadow-xs transition"
+                  >
+                    <Download className="w-3.5 h-3.5" />
+                    <span>Download .MP4 File</span>
+                  </a>
+                  <button
+                    onClick={() => setActiveTab('video')}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-stone-800 hover:bg-stone-700 text-stone-200 border border-stone-700 rounded-lg text-xs font-medium transition"
+                  >
+                    <span>Open Interactive Storyboard</span>
+                    <ChevronRight className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Video Overview & Highlights */}
+            <div className="max-w-5xl mx-auto w-full mt-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+              <div className="bg-white p-3.5 rounded-xl border border-stone-200 shadow-2xs">
+                <div className="flex items-center gap-1.5 text-emerald-800 text-[11px] font-bold font-mono">
+                  <Shield className="w-3.5 h-3.5 text-emerald-600" />
+                  <span>CHAPTER 1 & 2</span>
+                </div>
+                <div className="font-bold text-stone-900 text-xs mt-1">Problem 26045 & RAG Co-Pilot</div>
+                <p className="text-[11px] text-stone-600 mt-1">
+                  Traditional knowledge patent bars, dual-tier statutory grounding, and zero hallucinations.
+                </p>
+              </div>
+
+              <div className="bg-white p-3.5 rounded-xl border border-stone-200 shadow-2xs">
+                <div className="flex items-center gap-1.5 text-teal-800 text-[11px] font-bold font-mono">
+                  <BookOpen className="w-3.5 h-3.5 text-teal-600" />
+                  <span>CHAPTER 3</span>
+                </div>
+                <div className="font-bold text-stone-900 text-xs mt-1">Formulation Classifier</div>
+                <p className="text-[11px] text-stone-600 mt-1">
+                  56 Schedule I text cross-check, proprietary medicine classification, and Rule 158-B testing dossiers.
+                </p>
+              </div>
+
+              <div className="bg-white p-3.5 rounded-xl border border-stone-200 shadow-2xs">
+                <div className="flex items-center gap-1.5 text-amber-800 text-[11px] font-bold font-mono">
+                  <Award className="w-3.5 h-3.5 text-amber-600" />
+                  <span>CHAPTER 4 & 5</span>
+                </div>
+                <div className="font-bold text-stone-900 text-xs mt-1">IP & ABS Compliance</div>
+                <p className="text-[11px] text-stone-600 mt-1">
+                  Overcoming Section 3(p) with novel extraction, Section 3(e) synergism, and NBA Form 1 & 3 approvals.
+                </p>
+              </div>
+
+              <div className="bg-white p-3.5 rounded-xl border border-stone-200 shadow-2xs">
+                <div className="flex items-center gap-1.5 text-indigo-800 text-[11px] font-bold font-mono">
+                  <Globe className="w-3.5 h-3.5 text-indigo-600" />
+                  <span>CHAPTER 6 & 7</span>
+                </div>
+                <div className="font-bold text-stone-900 text-xs mt-1">AIIA Desk & 5 Languages</div>
+                <p className="text-[11px] text-stone-600 mt-1">
+                  Audit-ready checklist, 1-click technical officer dispatch, and 98.6% factual grounding benchmark.
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {activeTab === 'video' && (
           <div className="flex-1 flex flex-col min-h-0 bg-stone-50">
             {/* Visual Screen Area (16:9 Aspect Video Screen) */}
             <div
@@ -1038,8 +1165,10 @@ ${s.keyPoints.map((p) => `  * ${p}`).join('\n')}
               </div>
             </div>
           </div>
-        ) : (
-          /* Full Script & Storyboard Tab */
+        )}
+
+        {/* Full Script & Storyboard Tab */}
+        {activeTab === 'script' && (
           <div className="flex-1 flex flex-col min-h-0 bg-stone-50 p-6 overflow-y-auto space-y-6 text-stone-800">
             <div className="flex items-center justify-between border-b border-stone-200 pb-4 flex-wrap gap-3">
               <div>

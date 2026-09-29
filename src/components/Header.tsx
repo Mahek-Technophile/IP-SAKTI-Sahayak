@@ -68,7 +68,7 @@ export const Header: React.FC<HeaderProps> = ({
             title="Open 3-Minute SIH 2026 Interactive Demo Video & Presentation Script"
           >
             <Play className="w-3.5 h-3.5 fill-current" />
-            <span>3-Min Demo Video</span>
+            <span>Demo Video (.MP4)</span>
           </button>
 
           <span className="hidden md:inline text-emerald-800 text-[11px] font-medium">{t.header.ragBadge}</span>

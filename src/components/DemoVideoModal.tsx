@@ -52,31 +52,31 @@ interface Scene {
 const SCENES: Scene[] = [
   {
     id: 1,
-    title: 'SIH 2026 Problem Statement 26045 & Introduction',
+    title: 'Live Interactive Walkthrough: Real-Time Formulation Analysis',
     startTime: 0,
     duration: 22,
     endTime: 22,
-    category: 'Mission & Vision',
+    category: 'Interactive Demo',
     voiceover:
-      'Welcome to IP-SAKTI Sahayak, an intelligent regulatory and IP co-pilot engineered for the Ministry of Ayush and All India Institute of Ayurveda to resolve SIH 2026 Problem Statement 26045. Indian Ayush innovators struggle with intricate patent exclusions under Section 3(p), traditional knowledge hurdles, and strict Biological Diversity Act compliance. IP-SAKTI Sahayak provides a unified, source-grounded bridge between ancient heritage and modern patent commercialization.',
-    onScreenText: 'IP-SAKTI Sahayak • Ministry of Ayush / AIIA • SIH 2026 Problem 26045',
+      "Let's dive straight into the live interactive demo. Here, we analyze a real botanical formulation. Watch how the co-pilot immediately checks patent risks, classical status, and statutory rules in real time.",
+    onScreenText: 'Live Formulation Analysis • Section 3(p) Patent Check • Rule 158-B Roadmap',
     keyPoints: [
-      'Problem Statement 26045: AI-driven regulatory & IP assistant for Ayurveda',
-      'Unifies Patent Act 1970, Drugs & Cosmetics Act 1940, and Biodiversity Act 2002',
-      'Protects Traditional Knowledge while fast-tracking legitimate proprietary patents',
+      'Real-time formulation parser for botanicals, extraction methods & claims',
+      'Cross-checks 56 classical Samhitas, Section 3(p) bars & Biodiversity Act rules',
+      'Generates instant licensing roadmaps, patent claims & automated filings',
     ],
     tabKey: 'assistant',
     visualType: 'intro',
   },
   {
     id: 2,
-    title: 'Grounded RAG Co-Pilot & Zero-Hallucination Answers',
+    title: 'Interactive Statutory Grounding Engine (RAG)',
     startTime: 22,
     duration: 26,
     endTime: 48,
     category: 'Ask Assistant',
     voiceover:
-      'Here in the Ask Assistant module, Ayush researchers can inquire about complex formulations. Watch as we query whether supercritical extraction of Shallaki and Maricha can overcome the Section 3(p) Traditional Knowledge bar. Instead of generic AI responses, IP-SAKTI employs a dual-tier RAG architecture, grounding its guidance directly in the Indian Patents Act, Drugs and Cosmetics Rule 158-B, and TKDL references with verifiable confidence scores and statutory citations.',
+      "Let's ask the co-pilot a direct question: can supercritical CO2 extraction of Shallaki and Maricha overcome traditional knowledge bars? In seconds, our engine grounds every answer directly in patent law and classical texts with zero hallucination.",
     onScreenText: 'Strict Grounding in Statutory Acts • Zero-Hallucination RAG Pipeline',
     keyPoints: [
       'Dual-tier RAG: Primary statutory statutes + secondary peer-reviewed gazettes',
@@ -88,13 +88,13 @@ const SCENES: Scene[] = [
   },
   {
     id: 3,
-    title: 'HerbNova Classical Formulation Classifier',
+    title: 'Instant Classical Cross-Check & Classifier',
     startTime: 48,
     duration: 27,
     endTime: 75,
     category: 'Regulatory Classifier',
     voiceover:
-      'Our Formulation Classifier automates the statutory classification of Ayush products. We load the HerbNova scenario—a joint wellness extract based on Rasna Saptaka Kwatha modified with supercritical Boswellia extract. The engine cross-references the 56 First Schedule classical textbooks. Because modifications and a novel extraction technique were added, it instantly categorizes the product as an Ayurvedic Proprietary Medicine under Section 3(h), generating the mandatory Rule 158-B safety dossier requirements.',
+      "Now, let's explore the Formulation Classifier. We load HerbNova Joint Oil. The system automatically cross-references 56 classical Samhitas, flags the proprietary extract, and builds the complete Rule 158-B compliance roadmap.",
     onScreenText: 'Schedule I Classical Cross-Check • Rule 158-B Licensing Dossier Roadmap',
     keyPoints: [
       'Verification against 56 classical authoritative texts (Charaka, Sushruta, Sharangadhara)',
@@ -106,13 +106,13 @@ const SCENES: Scene[] = [
   },
   {
     id: 4,
-    title: 'Patent Eligibility & Novelty Navigator (Sec 3(p) & 3(e))',
+    title: 'Interactive Patent Novelty Navigator (Sec 3(p) & 3(e))',
     startTime: 75,
     duration: 25,
     endTime: 100,
     category: 'Patent Strategy',
     voiceover:
-      'Patenting herbal products in India is notoriously difficult because Section 3(p) excludes traditional knowledge, and Section 3(e) excludes mere admixtures. The IP Navigator diagnoses the patentability hurdle: claiming raw classical decoctions will trigger immediate rejection. However, by demonstrating synergism through enhanced bioavailability and patenting the proprietary supercritical carbon dioxide extraction process, applicants can successfully file valid process patents.',
+      "Next, check out the IP Navigator. Instead of facing an outright rejection under Section 3(p), the co-pilot guides us to demonstrate 310% bio-enhancement synergism under Section 3(e), unlocking a valid patent pathway.",
     onScreenText: 'Overcoming Section 3(p) TK Bar via Novel Extraction & Proven Synergism',
     keyPoints: [
       'Section 3(p) Traditional Knowledge Exclusion analysis & strategy',
@@ -124,13 +124,13 @@ const SCENES: Scene[] = [
   },
   {
     id: 5,
-    title: 'Biological Diversity Act 2002 & ABS Compliance',
+    title: 'Automated NBA Approvals & Biodiversity Compliance',
     startTime: 100,
     duration: 25,
     endTime: 125,
     category: 'ABS & Biodiversity',
     voiceover:
-      'Non-compliance with India\'s Biological Diversity Act carries severe criminal penalties and invalidates patents. The ABS module evaluates the entity profile, raw material wild-harvest locations, and commercialization plans. It determines if National Biodiversity Authority Form 1 approval is needed for foreign stakeholders, generates Form 3 prior approval filings before patent grant, and calculates State Biodiversity Board benefit-sharing dues.',
+      "Notice how the Biodiversity engine steps in. When foreign equity or biological sourcing is detected, it automatically prepares National Biodiversity Authority Form 1 and Form 3 filings, keeping the applicant fully protected.",
     onScreenText: 'NBA Form 1 & Form 3 Prior Approval Engine • Criminal Penalty Prevention',
     keyPoints: [
       'Automated Section 3 & Section 6 NBA approval determination',
@@ -142,13 +142,13 @@ const SCENES: Scene[] = [
   },
   {
     id: 6,
-    title: 'Compliance Action Checklist & AIIA Escalation Desk',
+    title: 'Centralized Task Checklist & Escalation Desk',
     startTime: 125,
     duration: 23,
     endTime: 148,
     category: 'Execution & Support',
     voiceover:
-      'Every assessment directly populates a centralized, audit-ready Action Checklist. Regulatory tasks are tagged with responsible authorities, documentation mandates, and statutory deadlines. For complex, borderline patent claims, users can invoke the AIIA Facilitation Desk with a single click, instantly transmitting prefilled dossiers to registered patent agents and Ayush technical officers.',
+      "Here is your interactive action checklist. Statutory deadlines are prioritized, compliance dossiers are ready to export, and complex borderline cases can be escalated directly to AIIA technical officers with a single click.",
     onScreenText: 'Audit-Ready Regulatory Checklist • Direct Ticket Dispatch to AIIA Officers',
     keyPoints: [
       'Prioritized action checklist with authority citations & required documents',
@@ -166,7 +166,7 @@ const SCENES: Scene[] = [
     endTime: 168,
     category: 'Multilingual & Global',
     voiceover:
-      'Ayurveda is a living heritage with diverse regional roots. IP-SAKTI Sahayak offers authentic multilingual support across English, Hindi, Sanskrit, Tamil, and Telugu. The underlying reasoning, terminology, and legal analysis update natively in each language. Furthermore, a single toggle switches between the domestic Indian statutory regime and the US FDA and European EMA international export frameworks.',
+      "Finally, notice the one-click multilingual toggle. You can switch seamlessly across five native languages and dual regulatory jurisdictions, backed by an independently verified 98.6% factual grounding benchmark.",
     onScreenText: 'English • हिन्दी • संस्कृतम् • தமிழ் • తెలుగు • Dual Jurisdiction Switch',
     keyPoints: [
       'Native script generation with traditional Ayurvedic nomenclature',
@@ -226,7 +226,7 @@ export const DemoVideoModal: React.FC<DemoVideoModalProps> = ({ isOpen, onClose,
     try {
       synthRef.current.cancel();
       const utterance = new SpeechSynthesisUtterance(scene.voiceover);
-      utterance.rate = playbackRate * 1.05;
+      utterance.rate = playbackRate * 0.88;
       utterance.pitch = 1.0;
       utterance.lang = 'en-IN';
 

@@ -9,6 +9,7 @@ import { ActionChecklist } from './components/ActionChecklist.tsx';
 import { EvaluationDashboard } from './components/EvaluationDashboard.tsx';
 import { EscalationModal } from './components/EscalationModal.tsx';
 import { ScenarioDrawer } from './components/ScenarioDrawer.tsx';
+import { DemoVideoModal } from './components/DemoVideoModal.tsx';
 import { Jurisdiction, LanguageCode, FormulationProfile, ActionChecklistItem } from './types/index.ts';
 
 export default function App() {
@@ -17,6 +18,7 @@ export default function App() {
   const [activeTab, setActiveTab] = useState<string>('assistant');
   const [isEscalateOpen, setIsEscalateOpen] = useState<boolean>(false);
   const [isScenarioOpen, setIsScenarioOpen] = useState<boolean>(false);
+  const [isDemoVideoOpen, setIsDemoVideoOpen] = useState<boolean>(false);
 
   // Active formulation profile context
   const [currentProfile, setCurrentProfile] = useState<FormulationProfile>({
@@ -94,7 +96,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-stone-100 text-stone-900 flex flex-col font-sans selection:bg-emerald-200 selection:text-emerald-900">
+    <div className="min-h-screen bg-stone-50 text-stone-900 flex flex-col font-sans selection:bg-emerald-200 selection:text-emerald-900">
       {/* Sticky Global Navigation & Header */}
       <Header
         jurisdiction={jurisdiction}
@@ -102,6 +104,7 @@ export default function App() {
         language={language}
         onLanguageChange={setLanguage}
         onLoadHerbNova={() => setIsScenarioOpen(true)}
+        onOpenDemoVideo={() => setIsDemoVideoOpen(true)}
         activeTab={activeTab}
         onTabChange={setActiveTab}
       />
@@ -156,39 +159,45 @@ export default function App() {
       </main>
 
       {/* Footer with Statutory Disclaimers */}
-      <footer className="bg-stone-900 text-stone-400 text-xs py-8 border-t border-stone-800">
+      <footer className="bg-white text-stone-600 text-xs py-8 border-t border-stone-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-4">
-          <div className="flex flex-wrap items-center justify-between gap-4 border-b border-stone-800 pb-4">
+          <div className="flex flex-wrap items-center justify-between gap-4 border-b border-stone-100 pb-4">
             <div className="flex items-center gap-3">
-              <span className="font-bold text-stone-200 font-serif text-sm">
+              <span className="font-bold text-stone-900 font-serif text-sm">
                 IP-SAKTI Sahayak
               </span>
-              <span className="text-stone-600">•</span>
-              <span className="text-stone-300">
+              <span className="text-stone-300">•</span>
+              <span className="text-stone-700">
                 Ministry of Ayush / All India Institute of Ayurveda (AIIA)
               </span>
-              <span className="text-stone-600">•</span>
-              <span className="font-mono text-emerald-400 bg-stone-950 px-2 py-0.5 rounded border border-stone-800">
+              <span className="text-stone-300">•</span>
+              <span className="font-mono text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200 text-[11px] font-medium">
                 SIH 2026 Problem Statement 26045
               </span>
             </div>
 
-            <div className="flex items-center gap-4 text-[11px]">
+            <div className="flex items-center gap-4 text-[11px] flex-wrap">
+              <button
+                onClick={() => setIsDemoVideoOpen(true)}
+                className="inline-flex items-center gap-1 text-red-600 hover:text-red-700 font-semibold transition"
+              >
+                <span>▶</span> 3-Min Demo Video (SIH Pitch)
+              </button>
               <button
                 onClick={() => setIsScenarioOpen(true)}
-                className="text-stone-300 hover:text-emerald-400 transition"
+                className="text-stone-700 hover:text-emerald-700 transition font-medium"
               >
                 HerbNova Scenario
               </button>
               <button
                 onClick={() => setActiveTab('evaluation')}
-                className="text-stone-300 hover:text-emerald-400 transition"
+                className="text-stone-700 hover:text-emerald-700 transition font-medium"
               >
                 Live Benchmark Suite
               </button>
               <button
                 onClick={() => setIsEscalateOpen(true)}
-                className="text-amber-400 hover:underline"
+                className="text-amber-800 hover:underline font-medium"
               >
                 AIIA Facilitation Desk
               </button>
@@ -202,6 +211,13 @@ export default function App() {
           </div>
         </div>
       </footer>
+
+      {/* 3-Minute Interactive Demo Video & SIH Pitch Modal */}
+      <DemoVideoModal
+        isOpen={isDemoVideoOpen}
+        onClose={() => setIsDemoVideoOpen(false)}
+        onJumpToTab={(tab) => setActiveTab(tab)}
+      />
 
       {/* Escalation to AIIA Facilitator Modal */}
       <EscalationModal

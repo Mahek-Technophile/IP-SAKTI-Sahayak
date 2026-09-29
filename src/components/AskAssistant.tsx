@@ -520,7 +520,7 @@ export const AskAssistant: React.FC<AskAssistantProps> = ({
 
               <div>
                 <span className="text-stone-500 font-bold block mb-1">Official Statutory / Regulatory Text Excerpt:</span>
-                <div className="bg-stone-900 text-stone-100 p-4 rounded-xl font-mono text-[11px] leading-relaxed max-h-48 overflow-y-auto border border-stone-800">
+                <div className="bg-stone-50 text-stone-800 p-4 rounded-xl font-mono text-[11px] leading-relaxed max-h-48 overflow-y-auto border border-stone-200">
                   {activeCitation.snippet}
                 </div>
               </div>

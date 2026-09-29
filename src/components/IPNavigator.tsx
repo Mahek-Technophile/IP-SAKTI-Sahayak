@@ -326,11 +326,11 @@ export const IPNavigator: React.FC<IPNavigatorProps> = ({
               onClick={() => setSelectedRouteId(route.id)}
               className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition border ${
                 isSelected
-                  ? 'bg-stone-900 text-emerald-400 border-stone-800 shadow-sm'
+                  ? 'bg-emerald-700 text-white border-emerald-800 shadow-sm'
                   : 'bg-white text-stone-700 border-stone-200 hover:bg-stone-50 hover:border-stone-300'
               }`}
             >
-              <Icon className={`w-3.5 h-3.5 ${isSelected ? 'text-emerald-400' : 'text-stone-400'}`} />
+              <Icon className={`w-3.5 h-3.5 ${isSelected ? 'text-white' : 'text-stone-400'}`} />
               <span>{route.name}</span>
             </button>
           );

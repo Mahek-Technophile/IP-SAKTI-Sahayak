@@ -140,7 +140,7 @@ export const SourceExplorer: React.FC<SourceExplorerProps> = ({ currentJurisdict
                 onClick={() => setSelectedDoc(doc)}
                 className={`p-3.5 rounded-xl border transition cursor-pointer text-left ${
                   isSelected
-                    ? 'bg-stone-900 text-white border-stone-800 shadow-md ring-2 ring-emerald-500/50'
+                    ? 'bg-emerald-50 text-emerald-950 border-emerald-300 shadow-md ring-2 ring-emerald-500/40'
                     : 'bg-white hover:bg-stone-50 text-stone-800 border-stone-200 shadow-2xs'
                 }`}
               >
@@ -148,7 +148,7 @@ export const SourceExplorer: React.FC<SourceExplorerProps> = ({ currentJurisdict
                   <span
                     className={`text-[10px] font-bold px-2 py-0.5 rounded ${
                       isSelected
-                        ? 'bg-emerald-950 text-emerald-300 border border-emerald-800'
+                        ? 'bg-emerald-200 text-emerald-900 border border-emerald-300'
                         : 'bg-stone-100 text-stone-700'
                     }`}
                   >
@@ -176,12 +176,12 @@ export const SourceExplorer: React.FC<SourceExplorerProps> = ({ currentJurisdict
                   </div>
                 </div>
 
-                <div className={`text-xs font-bold ${isSelected ? 'text-emerald-300' : 'text-stone-900'}`}>
+                <div className={`text-xs font-bold ${isSelected ? 'text-emerald-950' : 'text-stone-900'}`}>
                   {doc.title}
                 </div>
                 <div
                   className={`text-[11px] truncate mt-0.5 ${
-                    isSelected ? 'text-stone-400' : 'text-stone-500'
+                    isSelected ? 'text-emerald-800/80' : 'text-stone-500'
                   }`}
                 >
                   {doc.issuingAuthority}
@@ -247,7 +247,7 @@ export const SourceExplorer: React.FC<SourceExplorerProps> = ({ currentJurisdict
                 <span className="text-[11px] font-bold uppercase tracking-wider text-stone-500 block mb-1">
                   Official Statutory Text Excerpt:
                 </span>
-                <div className="bg-stone-950 text-stone-100 p-4 rounded-xl font-mono text-[11px] leading-relaxed border border-stone-800 max-h-56 overflow-y-auto">
+                <div className="bg-stone-50 text-stone-800 p-4 rounded-xl font-mono text-[11px] leading-relaxed border border-stone-200 max-h-56 overflow-y-auto">
                   {selectedDoc.text}
                 </div>
               </div>

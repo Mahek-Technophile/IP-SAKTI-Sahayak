@@ -1,5 +1,5 @@
 import React from 'react';
-import { Shield, Globe, BookOpen, Sparkles, CheckCircle2, AlertCircle } from 'lucide-react';
+import { Shield, Globe, BookOpen, Sparkles, CheckCircle2, AlertCircle, Play } from 'lucide-react';
 import { Jurisdiction, LanguageCode } from '../types/index.ts';
 import { getTranslation } from '../i18n/translations.ts';
 
@@ -9,6 +9,7 @@ interface HeaderProps {
   language: LanguageCode;
   onLanguageChange: (language: LanguageCode) => void;
   onLoadHerbNova: () => void;
+  onOpenDemoVideo: () => void;
   activeTab: string;
   onTabChange: (tab: string) => void;
 }
@@ -19,6 +20,7 @@ export const Header: React.FC<HeaderProps> = ({
   language,
   onLanguageChange,
   onLoadHerbNova,
+  onOpenDemoVideo,
   activeTab,
   onTabChange,
 }) => {
@@ -43,28 +45,38 @@ export const Header: React.FC<HeaderProps> = ({
   ];
 
   return (
-    <header className="sticky top-0 z-40 bg-stone-900 text-stone-100 border-b border-stone-800 shadow-md">
+    <header className="sticky top-0 z-40 bg-white text-stone-900 border-b border-stone-200 shadow-xs">
       {/* Top Banner with SIH 2026 Problem Statement credentials */}
-      <div className="bg-emerald-950/80 border-b border-emerald-900/50 px-4 py-1.5 text-xs text-emerald-300/90 flex flex-wrap items-center justify-between gap-2">
+      <div className="bg-emerald-50/90 border-b border-emerald-100 px-4 py-1.5 text-xs text-emerald-950 flex flex-wrap items-center justify-between gap-2">
         <div className="flex items-center gap-2">
-          <span className="inline-flex items-center gap-1 font-semibold text-emerald-200">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span className="inline-flex items-center gap-1 font-semibold text-emerald-900">
+            <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse"></span>
             {t.header.sihTitle}
           </span>
-          <span className="text-emerald-500">•</span>
-          <span>{t.header.ministryAyush}</span>
-          <span className="text-emerald-500">•</span>
-          <span className="font-mono bg-emerald-900/60 px-1.5 py-0.5 rounded text-emerald-200 border border-emerald-800/60">
+          <span className="text-emerald-300">•</span>
+          <span className="text-emerald-800">{t.header.ministryAyush}</span>
+          <span className="text-emerald-300">•</span>
+          <span className="font-mono bg-emerald-100/90 px-1.5 py-0.5 rounded text-emerald-900 border border-emerald-300/80 font-medium">
             {t.header.problemStatement}
           </span>
         </div>
-        <div className="flex items-center gap-3 text-stone-400">
-          <span className="hidden sm:inline">{t.header.ragBadge}</span>
+        <div className="flex items-center gap-2 sm:gap-3 text-stone-600">
+          {/* Prominent 3-Min Demo Video Button */}
+          <button
+            onClick={onOpenDemoVideo}
+            className="inline-flex items-center gap-1.5 bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-700 hover:to-rose-700 text-white font-semibold shadow-xs px-2.5 py-0.5 rounded text-xs transition border border-red-700/30"
+            title="Open 3-Minute SIH 2026 Interactive Demo Video & Presentation Script"
+          >
+            <Play className="w-3.5 h-3.5 fill-current" />
+            <span>3-Min Demo Video</span>
+          </button>
+
+          <span className="hidden md:inline text-emerald-800 text-[11px] font-medium">{t.header.ragBadge}</span>
           <button
             onClick={onLoadHerbNova}
-            className="inline-flex items-center gap-1 bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 px-2.5 py-0.5 rounded text-xs font-medium transition"
+            className="inline-flex items-center gap-1 bg-amber-100 hover:bg-amber-200 text-amber-900 border border-amber-300 px-2.5 py-0.5 rounded text-xs font-semibold transition shadow-2xs"
           >
-            <Sparkles className="w-3.5 h-3.5" />
+            <Sparkles className="w-3.5 h-3.5 text-amber-700" />
             {t.header.loadDemoBtn}
           </button>
         </div>
@@ -74,19 +86,19 @@ export const Header: React.FC<HeaderProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-4">
         {/* Title and Identity */}
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-emerald-600 to-teal-800 flex items-center justify-center shadow-inner border border-emerald-500/40">
-            <span className="font-bold text-lg text-emerald-100 font-serif">शा</span>
+          <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-emerald-600 to-teal-800 flex items-center justify-center shadow-sm border border-emerald-500/40">
+            <span className="font-bold text-lg text-emerald-50 font-serif">शा</span>
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <h1 className="text-lg font-bold tracking-tight text-stone-50 font-serif">
+              <h1 className="text-lg font-bold tracking-tight text-stone-900 font-serif">
                 {t.header.appTitle}
               </h1>
-              <span className="text-[10px] uppercase font-semibold bg-emerald-900/80 text-emerald-300 border border-emerald-700/60 px-1.5 py-0.5 rounded">
+              <span className="text-[10px] uppercase font-semibold bg-emerald-100 text-emerald-800 border border-emerald-300 px-1.5 py-0.5 rounded">
                 {t.header.prototypeBadge}
               </span>
             </div>
-            <p className="text-xs text-stone-400">
+            <p className="text-xs text-stone-500">
               {t.header.appSubtitle}
             </p>
           </div>
@@ -95,13 +107,13 @@ export const Header: React.FC<HeaderProps> = ({
         {/* Prominent Controls: Jurisdiction Switch & Multilingual Selector */}
         <div className="flex items-center gap-3 flex-wrap">
           {/* Prominent Jurisdiction Switch */}
-          <div className="flex items-center bg-stone-950 p-1 rounded-lg border border-stone-700/80 shadow-inner">
+          <div className="flex items-center bg-stone-100 p-1 rounded-lg border border-stone-200 shadow-2xs">
             <button
               onClick={() => onJurisdictionChange('INDIA')}
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold transition ${
                 jurisdiction === 'INDIA'
-                  ? 'bg-emerald-700 text-white shadow-sm'
-                  : 'text-stone-400 hover:text-stone-200'
+                  ? 'bg-emerald-700 text-white shadow-xs'
+                  : 'text-stone-600 hover:text-stone-900'
               }`}
               title={t.header.indiaTooltip}
             >
@@ -112,8 +124,8 @@ export const Header: React.FC<HeaderProps> = ({
               onClick={() => onJurisdictionChange('INTERNATIONAL')}
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold transition ${
                 jurisdiction === 'INTERNATIONAL'
-                  ? 'bg-blue-700 text-white shadow-sm'
-                  : 'text-stone-400 hover:text-stone-200'
+                  ? 'bg-blue-700 text-white shadow-xs'
+                  : 'text-stone-600 hover:text-stone-900'
               }`}
               title={t.header.internationalTooltip}
             >
@@ -123,16 +135,16 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
 
           {/* Language Selector */}
-          <div className="flex items-center bg-stone-950 border border-emerald-500/50 rounded-lg px-2 py-1 shadow-xs">
-            <span className="text-xs text-emerald-400 font-semibold mr-1.5">🌐 {t.header.langLabel}</span>
+          <div className="flex items-center bg-stone-50 border border-stone-300 rounded-lg px-2.5 py-1 shadow-2xs">
+            <span className="text-xs text-emerald-700 font-semibold mr-1.5">🌐 {t.header.langLabel}</span>
             <select
               value={language}
               onChange={(e) => onLanguageChange(e.target.value as LanguageCode)}
               aria-label="Select Assistant Language"
-              className="bg-transparent text-xs text-white font-semibold focus:outline-none cursor-pointer py-0.5"
+              className="bg-transparent text-xs text-stone-800 font-semibold focus:outline-none cursor-pointer py-0.5"
             >
               {languages.map((l) => (
-                <option key={l.code} value={l.code} className="bg-stone-900 text-stone-100">
+                <option key={l.code} value={l.code} className="bg-white text-stone-900">
                   {l.native} ({l.label})
                 </option>
               ))}
@@ -142,7 +154,7 @@ export const Header: React.FC<HeaderProps> = ({
       </div>
 
       {/* Navigation Sub-bar */}
-      <div className="bg-stone-950/90 border-t border-stone-800/80 px-4 sm:px-6">
+      <div className="bg-stone-50/90 border-t border-stone-200 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto flex overflow-x-auto no-scrollbar gap-1 py-1 text-xs">
           {navTabs.map((tab) => {
             const Icon = tab.icon;
@@ -153,11 +165,11 @@ export const Header: React.FC<HeaderProps> = ({
                 onClick={() => onTabChange(tab.id)}
                 className={`flex items-center gap-1.5 px-3 py-2 rounded-md whitespace-nowrap font-medium transition ${
                   isActive
-                    ? 'bg-stone-800 text-emerald-400 border-b-2 border-emerald-500 font-semibold'
-                    : 'text-stone-400 hover:text-stone-200 hover:bg-stone-900/60'
+                    ? 'bg-white text-emerald-700 border-b-2 border-emerald-600 shadow-2xs font-semibold'
+                    : 'text-stone-600 hover:text-stone-900 hover:bg-stone-100'
                 }`}
               >
-                <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-emerald-400' : 'text-stone-500'}`} />
+                <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-emerald-700' : 'text-stone-400'}`} />
                 <span>{tab.label}</span>
               </button>
             );

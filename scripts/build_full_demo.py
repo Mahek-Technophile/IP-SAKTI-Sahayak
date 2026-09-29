@@ -12,13 +12,14 @@ OUTPUT_MP4 = "public/demo-sih-2026.mp4"
 FONT_BOLD = "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf"
 FONT_REGULAR = "/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf"
 
+# Conversational presenter script (sounds like an authentic developer/presenter guiding the viewer through the live app)
 SCENES = [
     {
         "id": 1,
-        "tab": "INTERACTIVE DEMO",
+        "tab": "LIVE DEMO",
         "title": "Real-Time Herbal Formulation Analysis",
         "subtitle": "Live Workflow • Patent Eligibility • Classical Text Cross-Check • Biodiversity Compliance",
-        "voiceover": "Let's dive straight into the live interactive demo. Here, we analyze a real botanical formulation. Watch how the co-pilot immediately checks patent risks, classical status, and statutory rules in real time.",
+        "voiceover": "Hey everyone! Let's jump right into the live demo. Here, we're testing a real herbal formulation. Watch how our co-pilot immediately checks patent risks, classical status, and statutory rules in real time.",
         "cards": [
             {
                 "title": "Real-Time Formulation Input",
@@ -54,7 +55,7 @@ SCENES = [
         "tab": "ASK ASSISTANT",
         "title": "Interactive Statutory Grounding Engine",
         "subtitle": "Zero-Hallucination Answers • Patents Act 1970 • D&C Rules • TKDL Citations",
-        "voiceover": "Let's ask the co-pilot a direct question: can supercritical CO2 extraction of Shallaki and Maricha overcome traditional knowledge bars? In seconds, our engine grounds every answer directly in patent law and classical texts with zero hallucination.",
+        "voiceover": "Now, let's ask the co-pilot a direct question. Can supercritical CO2 extraction of Shallaki and Maricha overcome traditional knowledge bars? Look at that. In just seconds, our engine grounds every answer directly in patent law and classical texts with zero hallucination.",
         "cards": [
             {
                 "title": "Interactive User Query",
@@ -90,7 +91,7 @@ SCENES = [
         "tab": "FORMULATION CLASSIFIER",
         "title": "Instant Classical Cross-Check & Classifier",
         "subtitle": "56 Classical Samhitas • Rule 158-B Licensing Dossier Roadmap",
-        "voiceover": "Now, let's explore the Formulation Classifier. We load HerbNova Joint Oil. The system automatically cross-references 56 classical Samhitas, flags the proprietary extract, and builds the complete Rule 158-B compliance roadmap.",
+        "voiceover": "Next, let's check out the Formulation Classifier. We will load the HerbNova Joint Oil. Notice how the system automatically cross-references all 56 classical Samhitas, flags the proprietary extract, and builds out our full Rule 158-B compliance roadmap.",
         "cards": [
             {
                 "title": "HerbNova Scenario Loaded",
@@ -126,7 +127,7 @@ SCENES = [
         "tab": "IP NAVIGATOR",
         "title": "Interactive Patent Novelty Navigator",
         "subtitle": "Overcoming Section 3(p) TK Bars & Section 3(e) Mere Admixtures",
-        "voiceover": "Next, check out the IP Navigator. Instead of facing an outright rejection under Section 3(p), the co-pilot guides us to demonstrate 310% bio-enhancement synergism under Section 3(e), unlocking a valid patent pathway.",
+        "voiceover": "Now, let's move over to the IP Navigator. Instead of getting hit with an automatic rejection under Section 3(p), the co-pilot guides us to demonstrate 310% bio-enhancement synergism under Section 3(e), clearing a path for a valid patent.",
         "cards": [
             {
                 "title": "Diagnosing Patent Hurdles",
@@ -162,7 +163,7 @@ SCENES = [
         "tab": "BIODIVERSITY ENGINE",
         "title": "Automated NBA Approvals & Benefit Sharing",
         "subtitle": "Biological Diversity Act 2002 • Form 1 & Form 3 Prior Approvals",
-        "voiceover": "Notice how the Biodiversity engine steps in. When foreign equity or biological sourcing is detected, it automatically prepares National Biodiversity Authority Form 1 and Form 3 filings, keeping the applicant fully protected.",
+        "voiceover": "Watch how the Biodiversity engine handles compliance. Whenever foreign equity or biological sourcing is detected, it automatically prepares National Biodiversity Authority Form 1 and Form 3 filings, keeping the team completely protected.",
         "cards": [
             {
                 "title": "Foreign Equity Screening",
@@ -198,7 +199,7 @@ SCENES = [
         "tab": "ACTION CHECKLIST & DESK",
         "title": "Centralized Task Checklist & Escalation Desk",
         "subtitle": "Prioritized Deadlines • 1-Click AIIA Technical Officer Escalation",
-        "voiceover": "Here is your interactive action checklist. Statutory deadlines are prioritized, compliance dossiers are ready to export, and complex borderline cases can be escalated directly to AIIA technical officers with a single click.",
+        "voiceover": "Here is our centralized action checklist. Deadlines are automatically prioritized, compliance dossiers are ready to export, and if we hit an edge case, we can escalate directly to AIIA technical officers with just one click.",
         "cards": [
             {
                 "title": "Prioritized Action Tracker",
@@ -234,7 +235,7 @@ SCENES = [
         "tab": "MULTILINGUAL ENGINE",
         "title": "5-Language Engine & 98.6% Accuracy Benchmark",
         "subtitle": "English • Hindi • Sanskrit • Tamil • Telugu • Dual Jurisdictions",
-        "voiceover": "Finally, notice the one-click multilingual toggle. You can switch seamlessly across five native languages and dual regulatory jurisdictions, backed by an independently verified 98.6% factual grounding benchmark.",
+        "voiceover": "And finally, look at this one-click multilingual switcher. We can seamlessly toggle across five native languages and dual regulatory modes, all backed by our verified 98.6% factual grounding benchmark.",
         "cards": [
             {
                 "title": "5 Native Language Scripts",
@@ -278,7 +279,7 @@ def generate_slide(scene, index, total, out_path):
     ]
     
     draw_cmds = [
-        # Sleek top navigation banner (Clean interactive co-pilot branding, skipping bureaucratic intro)
+        # Sleek top navigation banner
         '-fill', '#064e3b', '-draw', 'rectangle 0,0 1920,80',
         '-fill', '#ffffff', '-font', FONT_BOLD, '-pointsize', '23',
         '-draw', f'text 60,50 "{escape_str("IP-SAKTI SAHAYAK • LIVE REGULATORY & IP CO-PILOT DEMONSTRATION")}"',
@@ -341,14 +342,14 @@ def generate_slide(scene, index, total, out_path):
                 '-draw', f'text {x1+24},{405 + line_i * 26} "{escape_str(line)}"'
             ])
             
-    # Bottom Voiceover Box
+    # Bottom Spoken Narration Box
     draw_cmds.extend([
         '-fill', '#042f2e', '-stroke', '#10b981', '-strokewidth', '2',
         '-draw', 'roundrectangle 60,790 1860,1030 14,14',
         
         # Tag
         '-fill', '#34d399', '-stroke', 'none', '-font', FONT_BOLD, '-pointsize', '15',
-        '-draw', f'text 90,825 "{escape_str("INTERACTIVE SPOKEN NARRATION:")}"'
+        '-draw', f'text 90,825 "{escape_str("LIVE PRESENTER NARRATION:")}"'
     ])
     
     # Wrapped voiceover text
@@ -372,7 +373,7 @@ def generate_slide(scene, index, total, out_path):
     subprocess.run(cmd, check=True)
 
 def main():
-    print(f"Generating {len(SCENES)} interactive demo scenes with slower paced voice...")
+    print(f"Generating {len(SCENES)} interactive demo scenes with realistic human presenter voice...")
     clip_files = []
     
     for i, scene in enumerate(SCENES):
@@ -382,41 +383,29 @@ def main():
         slide_png = os.path.join(TEMP_DIR, f"slide_{i+1}.png")
         generate_slide(scene, i, len(SCENES), slide_png)
         
-        # 2. Voiceover wav with slower tempo (atempo=0.85 = ~15% slower, calm & clear)
-        txt_path = os.path.join(TEMP_DIR, f"vo_{i+1}.txt")
-        with open(txt_path, "w") as f:
-            f.write(scene["voiceover"])
-            
-        raw_wav_path = os.path.join(TEMP_DIR, f"vo_raw_{i+1}.wav")
+        # 2. Natural neural human voiceover via edge-tts (en-IN-PrabhatNeural: authentic, natural, friendly, human tone)
+        mp3_path = os.path.join(TEMP_DIR, f"vo_neural_{i+1}.mp3")
         subprocess.run([
-            "ffmpeg", "-f", "lavfi", "-i", f"flite=textfile={txt_path}:voice=slt",
-            "-y", raw_wav_path
-        ], check=True, stderr=subprocess.DEVNULL)
-        
-        # Slow down with atempo=0.85 and optimize audio volume & clarity
-        wav_path = os.path.join(TEMP_DIR, f"vo_{i+1}.wav")
-        subprocess.run([
-            "ffmpeg", "-i", raw_wav_path,
-            "-af", "atempo=0.85,volume=1.25",
-            "-y", wav_path
-        ], check=True, stderr=subprocess.DEVNULL)
+            "edge-tts", "--voice", "en-IN-PrabhatNeural",
+            "--rate=-6%", "--text", scene["voiceover"],
+            "--write-media", mp3_path
+        ], check=True)
         
         # 3. Get audio duration
         res = subprocess.run([
             "ffprobe", "-v", "error", "-show_entries", "format=duration",
-            "-of", "default=noprint_wrappers=1:nokey=1", wav_path
+            "-of", "default=noprint_wrappers=1:nokey=1", mp3_path
         ], capture_output=True, text=True, check=True)
         duration = float(res.stdout.strip())
-        # Add 1.2 second pad for visual breathing room and slide transition
         total_clip_duration = duration + 1.2
         
-        # 4. Generate scene mp4
+        # 4. Generate scene mp4 with clean 24kHz/AAC audio
         clip_mp4 = os.path.join(TEMP_DIR, f"clip_{i+1}.mp4")
         subprocess.run([
             "ffmpeg", "-loop", "1", "-framerate", "15", "-i", slide_png,
-            "-i", wav_path, "-t", str(total_clip_duration),
+            "-i", mp3_path, "-t", str(total_clip_duration),
             "-c:v", "libx264", "-preset", "ultrafast",
-            "-c:a", "aac", "-b:a", "128k",
+            "-c:a", "aac", "-b:a", "192k",
             "-pix_fmt", "yuv420p", "-y", clip_mp4
         ], check=True, stderr=subprocess.DEVNULL)
         

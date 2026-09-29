@@ -58,7 +58,7 @@ const SCENES: Scene[] = [
     endTime: 22,
     category: 'Interactive Demo',
     voiceover:
-      "Let's dive straight into the live interactive demo. Here, we analyze a real botanical formulation. Watch how the co-pilot immediately checks patent risks, classical status, and statutory rules in real time.",
+      "Hey everyone! Let's jump right into the live demo. Here, we're testing a real herbal formulation. Watch how our co-pilot immediately checks patent risks, classical status, and statutory rules in real time.",
     onScreenText: 'Live Formulation Analysis • Section 3(p) Patent Check • Rule 158-B Roadmap',
     keyPoints: [
       'Real-time formulation parser for botanicals, extraction methods & claims',
@@ -76,7 +76,7 @@ const SCENES: Scene[] = [
     endTime: 48,
     category: 'Ask Assistant',
     voiceover:
-      "Let's ask the co-pilot a direct question: can supercritical CO2 extraction of Shallaki and Maricha overcome traditional knowledge bars? In seconds, our engine grounds every answer directly in patent law and classical texts with zero hallucination.",
+      "Now, let's ask the co-pilot a direct question. Can supercritical CO2 extraction of Shallaki and Maricha overcome traditional knowledge bars? Look at that. In just seconds, our engine grounds every answer directly in patent law and classical texts with zero hallucination.",
     onScreenText: 'Strict Grounding in Statutory Acts • Zero-Hallucination RAG Pipeline',
     keyPoints: [
       'Dual-tier RAG: Primary statutory statutes + secondary peer-reviewed gazettes',
@@ -94,7 +94,7 @@ const SCENES: Scene[] = [
     endTime: 75,
     category: 'Regulatory Classifier',
     voiceover:
-      "Now, let's explore the Formulation Classifier. We load HerbNova Joint Oil. The system automatically cross-references 56 classical Samhitas, flags the proprietary extract, and builds the complete Rule 158-B compliance roadmap.",
+      "Next, let's check out the Formulation Classifier. We will load the HerbNova Joint Oil. Notice how the system automatically cross-references all 56 classical Samhitas, flags the proprietary extract, and builds out our full Rule 158-B compliance roadmap.",
     onScreenText: 'Schedule I Classical Cross-Check • Rule 158-B Licensing Dossier Roadmap',
     keyPoints: [
       'Verification against 56 classical authoritative texts (Charaka, Sushruta, Sharangadhara)',
@@ -112,7 +112,7 @@ const SCENES: Scene[] = [
     endTime: 100,
     category: 'Patent Strategy',
     voiceover:
-      "Next, check out the IP Navigator. Instead of facing an outright rejection under Section 3(p), the co-pilot guides us to demonstrate 310% bio-enhancement synergism under Section 3(e), unlocking a valid patent pathway.",
+      "Now, let's move over to the IP Navigator. Instead of getting hit with an automatic rejection under Section 3(p), the co-pilot guides us to demonstrate 310% bio-enhancement synergism under Section 3(e), clearing a path for a valid patent.",
     onScreenText: 'Overcoming Section 3(p) TK Bar via Novel Extraction & Proven Synergism',
     keyPoints: [
       'Section 3(p) Traditional Knowledge Exclusion analysis & strategy',
@@ -130,7 +130,7 @@ const SCENES: Scene[] = [
     endTime: 125,
     category: 'ABS & Biodiversity',
     voiceover:
-      "Notice how the Biodiversity engine steps in. When foreign equity or biological sourcing is detected, it automatically prepares National Biodiversity Authority Form 1 and Form 3 filings, keeping the applicant fully protected.",
+      "Watch how the Biodiversity engine handles compliance. Whenever foreign equity or biological sourcing is detected, it automatically prepares National Biodiversity Authority Form 1 and Form 3 filings, keeping the team completely protected.",
     onScreenText: 'NBA Form 1 & Form 3 Prior Approval Engine • Criminal Penalty Prevention',
     keyPoints: [
       'Automated Section 3 & Section 6 NBA approval determination',
@@ -148,7 +148,7 @@ const SCENES: Scene[] = [
     endTime: 148,
     category: 'Execution & Support',
     voiceover:
-      "Here is your interactive action checklist. Statutory deadlines are prioritized, compliance dossiers are ready to export, and complex borderline cases can be escalated directly to AIIA technical officers with a single click.",
+      "Here is our centralized action checklist. Deadlines are automatically prioritized, compliance dossiers are ready to export, and if we hit an edge case, we can escalate directly to AIIA technical officers with just one click.",
     onScreenText: 'Audit-Ready Regulatory Checklist • Direct Ticket Dispatch to AIIA Officers',
     keyPoints: [
       'Prioritized action checklist with authority citations & required documents',
@@ -166,7 +166,7 @@ const SCENES: Scene[] = [
     endTime: 168,
     category: 'Multilingual & Global',
     voiceover:
-      "Finally, notice the one-click multilingual toggle. You can switch seamlessly across five native languages and dual regulatory jurisdictions, backed by an independently verified 98.6% factual grounding benchmark.",
+      "And finally, look at this one-click multilingual switcher. We can seamlessly toggle across five native languages and dual regulatory modes, all backed by our verified 98.6% factual grounding benchmark.",
     onScreenText: 'English • हिन्दी • संस्कृतम् • தமிழ் • తెలుగు • Dual Jurisdiction Switch',
     keyPoints: [
       'Native script generation with traditional Ayurvedic nomenclature',
